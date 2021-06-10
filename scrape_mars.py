@@ -29,8 +29,10 @@ def scrape():
     featured_image_url = url + relative_image_path
 
     url="http://galaxyfacts-mars.com"
-    marstable=pd.read_html(url)
+    marstable=pd.read_html(url)[1]
     marstable=pd.DataFrame(marstable)
+    marstable=marstable.rename(columns={0:"Property",1:"Value"})
+    marstable=marstable.set_index("Property")
     marstable.to_html("marstable.html")
     marstable_html=marstable.to_html("marstable.html")
 
