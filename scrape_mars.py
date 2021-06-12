@@ -32,9 +32,8 @@ def scrape():
     marstable=pd.read_html(url)[1]
     marstable=pd.DataFrame(marstable)
     marstable=marstable.rename(columns={0:"Property",1:"Value"})
-    marstable=marstable.set_index("Property")
+    marstable_html=marstable.to_html()
     marstable.to_html("marstable.html")
-    marstable_html=marstable.to_html("marstable.html")
 
     url = "https://marshemispheres.com/"
     browser.visit(url)
